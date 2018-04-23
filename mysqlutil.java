@@ -31,4 +31,32 @@ public class GetConnection {
                 e.printStackTrace();
             }
     }
+
+//batch
+
+public static void insertTest(Map<String,String> mysqlDbInfo){
+
+Connection conn=getconnect(mysqldbinfo);
+
+try{
+PrepareStatement statement=conn.preparestatement("insert into test(Z004023,h00012,dfadf) values (?,?,?);");
+
+for(int n=0;n<10;n++){
+
+for(int i=0;i<3;i++){
+
+statement.setString(i,'test'+i);
+}
+statement.addBatch();
+}
+
+statement.executeBatch();
+statement.close();
+conn.close();
+
+}}
+
+}
+
+
 }
